@@ -14,7 +14,13 @@ class Movie:
     dates: List[Tuple[datetime, datetime]]
 
     def schedule(self) -> Generator[datetime, None, None]:
-        pass
+        for period in self.dates:
+            start_day = period[0]
+            end_day = period[1]
+            delta = timedelta(days=1)
+            while start_day <= end_day:
+                yield start_day
+                start_day += delta
 
 
 m = Movie('sw', [(datetime(2020, 1, 1), datetime(2020, 1, 7)), (datetime(2020, 1, 15), datetime(2020, 2, 7))])
